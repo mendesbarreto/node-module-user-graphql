@@ -1,1 +1,4 @@
-console.log('Hi Hot reloading');
+import { createServer } from 'http';
+import { expressApp } from './app';
+
+createServer(expressApp);
