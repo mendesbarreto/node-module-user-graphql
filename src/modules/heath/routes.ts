@@ -7,6 +7,6 @@ healthRouter.use((req, res, next) => {
     next();
 });
 
-healthRouter.get('/heath', (req, res) => {
+healthRouter.get('/health', (req, res) => {
     res.status(200).send('Ok');
 });
