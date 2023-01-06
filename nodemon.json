@@ -1,0 +1,9 @@
+{
+    "signal": "SIGINT",
+    "watch": [
+        "src"
+    ],
+    "ext": "ts",
+    "exec": "ts-node ./src/index.ts",
+    "delay": 550
+}
