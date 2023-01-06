@@ -2,4 +2,4 @@ import express from 'express';
 
 const app = express();
 
-export { app as expressApp };
+export default app;

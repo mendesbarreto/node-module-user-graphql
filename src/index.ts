@@ -1,4 +1,10 @@
 import { createServer } from 'http';
-import { expressApp } from './app';
+import { registerRoutes } from './routes';
+import expressApp from './app';
 
-createServer(expressApp);
+const httpServer = createServer(expressApp);
+
+registerRoutes(expressApp);
+
+httpServer.listen(4000);
+httpServer.on('listening', () => console.log('Hi there'));
