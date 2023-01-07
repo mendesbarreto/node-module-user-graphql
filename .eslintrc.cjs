@@ -1,12 +1,12 @@
 module.exports = {
     root: true,
     parser: '@typescript-eslint/parser',
-    plugins: ['@typescript-eslint'],
+    plugins: ['@typescript-eslint', 'prettier'],
     extends: [
-        'airbnb-base',
         'eslint:recommended',
         'plugin:@typescript-eslint/recommended',
         'plugin:import/typescript',
+        'airbnb-base',
         'prettier',
     ],
     parserOptions: {
@@ -14,14 +14,7 @@ module.exports = {
         project: './tsconfig.json',
     },
     rules: {
-        indent: [
-            'error',
-            4,
-            {
-                SwitchCase: 1,
-                ignoredNodes: ['ConditionalExpression'],
-            },
-        ],
+        indent: 'off',
         'import/prefer-default-export': 'off',
         'import/extensions': [
             'error',
