@@ -17,7 +17,10 @@ module.exports = {
         indent: [
             'error',
             4,
-            { SwitchCase: 1, ignoredNodes: [ConditionalExpression] },
+            {
+                SwitchCase: 1,
+                ignoredNodes: ['ConditionalExpression'],
+            },
         ],
         'import/prefer-default-export': 'off',
         'import/extensions': [

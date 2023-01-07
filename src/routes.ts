@@ -9,9 +9,9 @@ import path, { join } from 'path';
 import { config } from './config';
 import { healthRouter } from './modules/heath/routes';
 
-export const mergedAppSchemas = [];
+export const mergedAppSchemas: any[] = [];
 
-export async function registerRoutes(app: Express) {
+export async function registerRoutes(app: Express): Promise<void> {
     app.use('/v1/', healthRouter);
 }
 
