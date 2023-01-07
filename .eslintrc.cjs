@@ -14,7 +14,11 @@ module.exports = {
         project: './tsconfig.json',
     },
     rules: {
-        indent: ['error', 4],
+        indent: [
+            'error',
+            4,
+            { SwitchCase: 1, ignoredNodes: [ConditionalExpression] },
+        ],
         'import/prefer-default-export': 'off',
         'import/extensions': [
             'error',
