@@ -1,7 +1,8 @@
 import { createServer } from 'http';
-import { registerRoutes } from './routes';
-import expressApp from './app';
-import { config } from './config';
+import { expressApp } from '@src/app';
+import { config } from '@src/config';
+
+import { registerRoutes } from '@src/routes';
 
 const httpServer = createServer(expressApp);
 

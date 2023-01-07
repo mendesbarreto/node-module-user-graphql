@@ -5,9 +5,8 @@ import {
     fieldAuthorizePlugin,
     makeSchema,
 } from 'nexus';
-import path, { join } from 'path';
-import { config } from './config';
-import { healthRouter } from './modules/heath/routes';
+import path from 'path';
+import { healthRouter } from '@src/modules/health/routes';
 
 export const mergedAppSchemas: any[] = [];
 
