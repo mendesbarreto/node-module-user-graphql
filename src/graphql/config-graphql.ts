@@ -1,4 +1,5 @@
 import { RequestHandler } from 'express';
+import { mergeSchemas } from '@graphql-tools/schema';
 import {
     connectionPlugin,
     declarativeWrappingPlugin,
@@ -9,9 +10,12 @@ import {
 import path from 'path';
 import { config } from '@src/config';
 import { createYoga } from 'graphql-yoga';
+import { userModelGraphQLSchema } from '@src/modules/user/user-model';
 import { IGraphQLContext } from './graphql-context';
 
-export const mergedAppSchemas: any[] = [];
+export const mergedAppSchemas = mergeSchemas({
+    schemas: [userModelGraphQLSchema],
+});
 
 export function createNexusConfig() {
     return makeSchema({

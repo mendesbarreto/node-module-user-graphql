@@ -2,6 +2,219 @@
 ### Do not make changes to this file directly
 
 
+input CreateOneUserInput {
+  createdAt: Date
+  email: String
+  firstName: String
+  lastName: String
+  password: String
+  updatedAt: Date
+}
+
+type CreateOneUserPayload {
+  """
+  Error that may occur during operation. If you request this field in GraphQL query, you will receive typed error in payload; otherwise error will be provided in root `errors` field of GraphQL response.
+  """
+  error: ErrorInterface
+
+  """Created document"""
+  record: User
+
+  """Document ID"""
+  recordId: MongoID
+}
+
+scalar Date
+
+interface ErrorInterface {
+  """Generic error message"""
+  message: String
+}
+
+input FilterFindManyUserEmailOperatorsInput {
+  exists: Boolean
+  gt: String
+  gte: String
+  in: [String]
+  lt: String
+  lte: String
+  ne: String
+  nin: [String]
+  regex: RegExpAsString
+}
+
+input FilterFindManyUserFirstNameOperatorsInput {
+  exists: Boolean
+  gt: String
+  gte: String
+  in: [String]
+  lt: String
+  lte: String
+  ne: String
+  nin: [String]
+  regex: RegExpAsString
+}
+
+input FilterFindManyUserInput {
+  AND: [FilterFindManyUserInput!]
+  OR: [FilterFindManyUserInput!]
+  _id: MongoID
+
+  """List of *indexed* fields that can be filtered via operators."""
+  _operators: FilterFindManyUserOperatorsInput
+  createdAt: Date
+  email: String
+  firstName: String
+  lastName: String
+  password: String
+  updatedAt: Date
+}
+
+input FilterFindManyUserLastNameOperatorsInput {
+  exists: Boolean
+  gt: String
+  gte: String
+  in: [String]
+  lt: String
+  lte: String
+  ne: String
+  nin: [String]
+  regex: RegExpAsString
+}
+
+"""For performance reason this type contains only *indexed* fields."""
+input FilterFindManyUserOperatorsInput {
+  _id: FilterFindManyUser_idOperatorsInput
+  email: FilterFindManyUserEmailOperatorsInput
+  firstName: FilterFindManyUserFirstNameOperatorsInput
+  lastName: FilterFindManyUserLastNameOperatorsInput
+}
+
+input FilterFindManyUser_idOperatorsInput {
+  exists: Boolean
+  gt: MongoID
+  gte: MongoID
+  in: [MongoID]
+  lt: MongoID
+  lte: MongoID
+  ne: MongoID
+  nin: [MongoID]
+}
+
+"""
+The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
+scalar JSON
+
+type MongoError implements ErrorInterface {
+  """MongoDB error code"""
+  code: Int
+
+  """MongoDB error message"""
+  message: String
+}
+
+"""
+The `ID` scalar type represents a unique MongoDB identifier in collection. MongoDB by default use 12-byte ObjectId value (https://docs.mongodb.com/manual/reference/bson-types/#objectid). But MongoDB also may accepts string or integer as correct values for _id field.
+"""
+scalar MongoID
+
+type Mutation {
+  """
+  Create one document with mongoose defaults, setters, hooks and validation
+  """
+  createUser(record: CreateOneUserInput!): CreateOneUserPayload
+
+  """
+  Update one document: 1) Retrieve one document by findById. 2) Apply updates to mongoose document. 3) Mongoose applies defaults, setters, hooks and validation. 4) And save it.
+  """
+  udpateUserById(_id: MongoID!, record: UpdateByIdUserInput!): UpdateByIdUserPayload
+}
+
 type Query {
-  ok: Boolean!
+  userById(_id: MongoID!): User
+  userList(
+    """Filter by fields"""
+    filter: FilterFindManyUserInput
+    limit: Int = 100
+    skip: Int
+    sort: SortFindManyUserInput
+  ): [User!]!
+}
+
+"""
+The string representation of JavaScript regexp. You may provide it with flags "/^abc.*/i" or without flags like "^abc.*". More info about RegExp characters and flags: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions
+"""
+scalar RegExpAsString @specifiedBy(url: "http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-262.pdf")
+
+type RuntimeError implements ErrorInterface {
+  """Runtime error message"""
+  message: String
+}
+
+enum SortFindManyUserInput {
+  EMAIL_ASC
+  EMAIL_DESC
+  FIRSTNAME_ASC
+  FIRSTNAME_DESC
+  LASTNAME_ASC
+  LASTNAME_DESC
+  _ID_ASC
+  _ID_DESC
+}
+
+input UpdateByIdUserInput {
+  createdAt: Date
+  email: String
+  firstName: String
+  lastName: String
+  password: String
+  updatedAt: Date
+}
+
+type UpdateByIdUserPayload {
+  """
+  Error that may occur during operation. If you request this field in GraphQL query, you will receive typed error in payload; otherwise error will be provided in root `errors` field of GraphQL response.
+  """
+  error: ErrorInterface
+
+  """Updated document"""
+  record: User
+
+  """Document ID"""
+  recordId: MongoID
+}
+
+type User {
+  _id: MongoID!
+  createdAt: Date
+  email: String
+  firstName: String
+  lastName: String
+  password: String
+  updatedAt: Date
+}
+
+type ValidationError implements ErrorInterface {
+  """List of validator errors"""
+  errors: [ValidatorError!]
+
+  """Combined error message from all validators"""
+  message: String
+}
+
+type ValidatorError {
+  """
+  Input record idx in array which occurs the validation error. This `idx` is useful for createMany operation. For singular operations it always be 0. For *Many operations `idx` represents record index in array received from user.
+  """
+  idx: Int!
+
+  """Validation error message"""
+  message: String
+
+  """Source of the validation error from the model path"""
+  path: String
+
+  """Field value which occurs the validation error"""
+  value: JSON
 }
