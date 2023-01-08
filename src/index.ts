@@ -2,11 +2,12 @@ import { createServer } from 'http';
 import { expressApp } from '@src/app';
 import { config } from '@src/config';
 
-import { registerRoutes } from '@src/routes';
+import { registerGraphQL, registerRoutes } from '@src/routes';
 
 const httpServer = createServer(expressApp);
 
 registerRoutes(expressApp);
+registerGraphQL(expressApp);
 
 httpServer.listen(config.port);
 
