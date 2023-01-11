@@ -7,6 +7,8 @@ export interface UserModel extends Document {
     lastName: string;
     email: string;
     password: string;
+    createdAt: Date;
+    updatedAt: Date;
 }
 
 const userSchema = new Schema<UserModel>(

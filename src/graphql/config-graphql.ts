@@ -11,11 +11,15 @@ import path from 'path';
 import { config } from '@src/config';
 import { createYoga } from 'graphql-yoga';
 import { userModelGraphQLSchema } from '@src/modules/user/user-model';
+import { v1CreateUser } from '@src/modules/user/v1-create-user';
 import { IGraphQLContext } from './graphql-context';
 
-export const mergedAppSchemas = mergeSchemas({
-    schemas: [userModelGraphQLSchema],
-});
+export const mergedAppSchemas = [
+    mergeSchemas({
+        schemas: [userModelGraphQLSchema],
+    }),
+    v1CreateUser,
+];
 
 export function createNexusConfig() {
     return makeSchema({

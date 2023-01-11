@@ -129,6 +129,7 @@ type Mutation {
   Update one document: 1) Retrieve one document by findById. 2) Apply updates to mongoose document. 3) Mongoose applies defaults, setters, hooks and validation. 4) And save it.
   """
   udpateUserById(_id: MongoID!, record: UpdateByIdUserInput!): UpdateByIdUserPayload
+  v1CreateUser(record: v1CreateUserInput!): v1CreateUserOutput!
 }
 
 type Query {
@@ -217,4 +218,16 @@ type ValidatorError {
 
   """Field value which occurs the validation error"""
   value: JSON
+}
+
+input v1CreateUserInput {
+  email: String!
+  firstName: String!
+  lastName: String!
+  password: String!
+}
+
+type v1CreateUserOutput {
+  """The updated information about the new user"""
+  user: User
 }

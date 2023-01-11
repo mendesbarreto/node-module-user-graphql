@@ -102,6 +102,12 @@ export interface NexusGenInputs {
     password?: string | null; // String
     updatedAt?: NexusGenScalars['Date'] | null; // Date
   }
+  v1CreateUserInput: { // input type
+    email: string; // String!
+    firstName: string; // String!
+    lastName: string; // String!
+    password: string; // String!
+  }
 }
 
 export interface NexusGenEnums {
@@ -156,6 +162,9 @@ export interface NexusGenObjects {
     path?: string | null; // String
     value?: NexusGenScalars['JSON'] | null; // JSON
   }
+  v1CreateUserOutput: { // root type
+    user?: NexusGenRootTypes['User'] | null; // User
+  }
 }
 
 export interface NexusGenInterfaces {
@@ -182,6 +191,7 @@ export interface NexusGenFieldTypes {
   Mutation: { // field return type
     createUser: NexusGenRootTypes['CreateOneUserPayload'] | null; // CreateOneUserPayload
     udpateUserById: NexusGenRootTypes['UpdateByIdUserPayload'] | null; // UpdateByIdUserPayload
+    v1CreateUser: NexusGenRootTypes['v1CreateUserOutput']; // v1CreateUserOutput!
   }
   Query: { // field return type
     userById: NexusGenRootTypes['User'] | null; // User
@@ -214,6 +224,9 @@ export interface NexusGenFieldTypes {
     path: string | null; // String
     value: NexusGenScalars['JSON'] | null; // JSON
   }
+  v1CreateUserOutput: { // field return type
+    user: NexusGenRootTypes['User'] | null; // User
+  }
   ErrorInterface: { // field return type
     message: string | null; // String
   }
@@ -232,6 +245,7 @@ export interface NexusGenFieldTypeNames {
   Mutation: { // field return type name
     createUser: 'CreateOneUserPayload'
     udpateUserById: 'UpdateByIdUserPayload'
+    v1CreateUser: 'v1CreateUserOutput'
   }
   Query: { // field return type name
     userById: 'User'
@@ -264,6 +278,9 @@ export interface NexusGenFieldTypeNames {
     path: 'String'
     value: 'JSON'
   }
+  v1CreateUserOutput: { // field return type name
+    user: 'User'
+  }
   ErrorInterface: { // field return type name
     message: 'String'
   }
@@ -277,6 +294,9 @@ export interface NexusGenArgTypes {
     udpateUserById: { // args
       _id: NexusGenScalars['MongoID']; // MongoID!
       record: NexusGenInputs['UpdateByIdUserInput']; // UpdateByIdUserInput!
+    }
+    v1CreateUser: { // args
+      record: NexusGenInputs['v1CreateUserInput']; // v1CreateUserInput!
     }
   }
   Query: {
