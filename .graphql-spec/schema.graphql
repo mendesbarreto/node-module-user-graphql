@@ -130,6 +130,7 @@ type Mutation {
   """
   udpateUserById(_id: MongoID!, record: UpdateByIdUserInput!): UpdateByIdUserPayload
   v1CreateUser(record: v1CreateUserInput!): v1CreateUserOutput!
+  v1UserAuth(email: String!, password: String!): v1UserAuthOutput!
 }
 
 type Query {
@@ -230,4 +231,8 @@ input v1CreateUserInput {
 type v1CreateUserOutput {
   """The updated information about the new user"""
   user: User
+}
+
+type v1UserAuthOutput {
+  accessToken: String!
 }

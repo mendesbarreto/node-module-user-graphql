@@ -12,6 +12,7 @@ import { config } from '@src/config';
 import { createYoga } from 'graphql-yoga';
 import { userModelGraphQLSchema } from '@src/modules/user/user-model';
 import { v1CreateUser } from '@src/modules/user/v1-create-user';
+import { v1UserAuth } from '@src/modules/user/v1-user-auth';
 import { IGraphQLContext } from './graphql-context';
 
 export const mergedAppSchemas = [
@@ -19,6 +20,7 @@ export const mergedAppSchemas = [
         schemas: [userModelGraphQLSchema],
     }),
     v1CreateUser,
+    v1UserAuth,
 ];
 
 export function createNexusConfig() {

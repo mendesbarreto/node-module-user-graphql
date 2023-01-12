@@ -165,6 +165,9 @@ export interface NexusGenObjects {
   v1CreateUserOutput: { // root type
     user?: NexusGenRootTypes['User'] | null; // User
   }
+  v1UserAuthOutput: { // root type
+    accessToken: string; // String!
+  }
 }
 
 export interface NexusGenInterfaces {
@@ -192,6 +195,7 @@ export interface NexusGenFieldTypes {
     createUser: NexusGenRootTypes['CreateOneUserPayload'] | null; // CreateOneUserPayload
     udpateUserById: NexusGenRootTypes['UpdateByIdUserPayload'] | null; // UpdateByIdUserPayload
     v1CreateUser: NexusGenRootTypes['v1CreateUserOutput']; // v1CreateUserOutput!
+    v1UserAuth: NexusGenRootTypes['v1UserAuthOutput']; // v1UserAuthOutput!
   }
   Query: { // field return type
     userById: NexusGenRootTypes['User'] | null; // User
@@ -227,6 +231,9 @@ export interface NexusGenFieldTypes {
   v1CreateUserOutput: { // field return type
     user: NexusGenRootTypes['User'] | null; // User
   }
+  v1UserAuthOutput: { // field return type
+    accessToken: string; // String!
+  }
   ErrorInterface: { // field return type
     message: string | null; // String
   }
@@ -246,6 +253,7 @@ export interface NexusGenFieldTypeNames {
     createUser: 'CreateOneUserPayload'
     udpateUserById: 'UpdateByIdUserPayload'
     v1CreateUser: 'v1CreateUserOutput'
+    v1UserAuth: 'v1UserAuthOutput'
   }
   Query: { // field return type name
     userById: 'User'
@@ -281,6 +289,9 @@ export interface NexusGenFieldTypeNames {
   v1CreateUserOutput: { // field return type name
     user: 'User'
   }
+  v1UserAuthOutput: { // field return type name
+    accessToken: 'String'
+  }
   ErrorInterface: { // field return type name
     message: 'String'
   }
@@ -297,6 +308,10 @@ export interface NexusGenArgTypes {
     }
     v1CreateUser: { // args
       record: NexusGenInputs['v1CreateUserInput']; // v1CreateUserInput!
+    }
+    v1UserAuth: { // args
+      email: string; // String!
+      password: string; // String!
     }
   }
   Query: {
