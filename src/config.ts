@@ -18,7 +18,7 @@ const development = {
             process.env.MONGODB_URI ??
             'mongodb://0.0.0.0:27017/module-user-local',
     },
-    jwtSecrete: process.env.JWT_SECRET ?? 'topSecreteKey',
+    jwtSecret: process.env.JWT_SECRET ?? 'TOP_SECRET',
     httpTimeout: 10000,
 };
 

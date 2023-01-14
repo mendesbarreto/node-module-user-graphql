@@ -1,6 +1,12 @@
 import { schemaComposer } from 'graphql-compose';
 import { composeMongoose } from 'graphql-compose-mongoose';
-import { Document, model, Schema } from 'mongoose';
+import { Document, model, Schema, Types } from 'mongoose';
+
+// Lean returned by mongoose are plain javascript objects
+// and makes the query faster
+export interface UserLean {
+    _id: Types.ObjectId | string;
+}
 
 export interface UserModel extends Document {
     firstName: string;

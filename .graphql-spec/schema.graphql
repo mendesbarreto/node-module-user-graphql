@@ -142,6 +142,7 @@ type Query {
     skip: Int
     sort: SortFindManyUserInput
   ): [User!]!
+  v1UserList: v1UserListOutput!
 }
 
 """
@@ -235,4 +236,8 @@ type v1CreateUserOutput {
 
 type v1UserAuthOutput {
   accessToken: String!
+}
+
+type v1UserListOutput {
+  users: [User]
 }

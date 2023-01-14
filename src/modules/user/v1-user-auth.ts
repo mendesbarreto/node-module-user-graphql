@@ -3,7 +3,10 @@ import { arg, mutationField, objectType } from 'nexus';
 import { GraphQLError } from 'graphql';
 import { compareSync } from 'bcrypt';
 import { sign } from 'jsonwebtoken';
+import { config } from '@src/config';
 import { userRepository } from './user-model';
+
+const { jwtSecret } = config;
 
 const input = {
     email: arg({ type: 'String', required: true }),
@@ -45,7 +48,7 @@ const field = mutationField('v1UserAuth', {
         const { _id, firstName } = existingUser;
 
         return {
-            accessToken: sign({ _id, name: firstName, email }, 'TOP_SECRET'),
+            accessToken: sign({ _id, name: firstName, email }, jwtSecret),
         };
     },
 });

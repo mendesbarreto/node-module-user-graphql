@@ -168,6 +168,9 @@ export interface NexusGenObjects {
   v1UserAuthOutput: { // root type
     accessToken: string; // String!
   }
+  v1UserListOutput: { // root type
+    users?: Array<NexusGenRootTypes['User'] | null> | null; // [User]
+  }
 }
 
 export interface NexusGenInterfaces {
@@ -200,6 +203,7 @@ export interface NexusGenFieldTypes {
   Query: { // field return type
     userById: NexusGenRootTypes['User'] | null; // User
     userList: NexusGenRootTypes['User'][]; // [User!]!
+    v1UserList: NexusGenRootTypes['v1UserListOutput']; // v1UserListOutput!
   }
   RuntimeError: { // field return type
     message: string | null; // String
@@ -234,6 +238,9 @@ export interface NexusGenFieldTypes {
   v1UserAuthOutput: { // field return type
     accessToken: string; // String!
   }
+  v1UserListOutput: { // field return type
+    users: Array<NexusGenRootTypes['User'] | null> | null; // [User]
+  }
   ErrorInterface: { // field return type
     message: string | null; // String
   }
@@ -258,6 +265,7 @@ export interface NexusGenFieldTypeNames {
   Query: { // field return type name
     userById: 'User'
     userList: 'User'
+    v1UserList: 'v1UserListOutput'
   }
   RuntimeError: { // field return type name
     message: 'String'
@@ -291,6 +299,9 @@ export interface NexusGenFieldTypeNames {
   }
   v1UserAuthOutput: { // field return type name
     accessToken: 'String'
+  }
+  v1UserListOutput: { // field return type name
+    users: 'User'
   }
   ErrorInterface: { // field return type name
     message: 'String'
