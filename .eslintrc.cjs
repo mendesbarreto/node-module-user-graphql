@@ -8,6 +8,7 @@ module.exports = {
     },
     globals: {
         NodeJS: true,
+        _: 'readonly',
     },
     root: true,
     parser: '@typescript-eslint/parser',
