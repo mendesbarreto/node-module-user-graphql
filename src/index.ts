@@ -1,11 +1,16 @@
 import { expressApp } from '@src/app';
 import { config } from '@src/config';
 
-import { registerGraphQL, registerRoutes } from '@src/routes';
+import {
+    registerGraphQL,
+    registerMiddlewares,
+    registerRoutes,
+} from '@src/routes';
 import { createMongoDBInstance } from './db/mongodb';
 import { createAppServer } from './server/http';
 
 const httpServer = createAppServer(expressApp);
+registerMiddlewares(expressApp);
 registerRoutes(expressApp);
 registerGraphQL(expressApp);
 
