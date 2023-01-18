@@ -1,6 +1,6 @@
 import { GraphQLError } from 'graphql';
 import { list, objectType, queryField } from 'nexus';
-import { userRepository } from './user-model';
+import { userRepository } from './model-user';
 
 const input = {};
 

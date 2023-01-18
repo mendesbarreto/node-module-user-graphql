@@ -4,7 +4,7 @@ import { GraphQLError } from 'graphql';
 import { compareSync } from 'bcrypt';
 import { sign } from 'jsonwebtoken';
 import { config } from '@src/config';
-import { userRepository } from './user-model';
+import { userRepository } from './model-user';
 
 const { jwtSecret } = config;
 

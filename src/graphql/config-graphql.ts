@@ -10,8 +10,8 @@ import {
 import path from 'path';
 import { config } from '@src/config';
 import { createYoga } from 'graphql-yoga';
-import { userModelGraphQLSchema } from '@src/modules/user/user-model';
-import { v1CreateUser } from '@src/modules/user/v1-create-user';
+import { userModelGraphQLSchema } from '@src/modules/user/model-user';
+import { v1CreateUser } from '@src/modules/user/v1-user-create';
 import { v1UserAuth } from '@src/modules/user/v1-user-auth';
 import { v1UserList } from '@src/modules/user/v1-user-list';
 import { IGraphQLContext } from './graphql-context';

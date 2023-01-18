@@ -4,7 +4,7 @@ import { GraphQLError } from 'graphql';
 import { genSaltSync } from 'bcrypt';
 import * as yup from 'yup';
 import { ObjectId } from 'mongodb';
-import { userRepository } from './user-model';
+import { userRepository } from '@modules/user/model-user';
 
 const v1CreateUserInputType = inputObjectType({
     name: 'v1CreateUserInput',
