@@ -14,7 +14,7 @@ export async function createMongoDBInstance(): Promise<void> {
         return;
     }
 
-    mongoose.set('debug', config.isDeveloment);
+    mongoose.set('debug', config.isDevelopment);
     mongoose.set('strictQuery', false);
     mongodbInstance = await mongoose.connect(config.mongodb.uri);
     mongodbConnection = mongodbInstance.connection;
