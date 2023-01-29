@@ -1,4 +1,5 @@
 import { config } from '@src/config';
+import { logger } from '@src/utils/logger';
 import Redis from 'ioredis';
 
 let redisInstance: Redis;
@@ -7,7 +8,7 @@ const options = { ...config.redis, isDevelopment: config.isDevelopment };
 async function createRedisInstance(): Promise<void> {
     const { uri, ...opt } = options;
     redisInstance = new Redis(uri, opt);
-    console.log('Redis initialized');
+    logger.info('Redis initialized');
 }
 
 async function disconectRedis() {

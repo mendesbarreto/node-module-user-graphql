@@ -1,4 +1,5 @@
 import { config } from '@src/config';
+import { logger } from '@src/utils/logger';
 import mongoose, { Mongoose } from 'mongoose';
 
 interface MongoDB {
@@ -20,14 +21,14 @@ export async function createMongoDBInstance(): Promise<void> {
     mongodbConnection = mongodbInstance.connection;
 
     mongoose.syncIndexes().then(() => {
-        console.log('All mongo db indexes are synced');
+        logger.info('All mongo db indexes are synced');
     });
 
     mongodbConnection.on('error', (err) => {
-        console.error(err);
+        logger.error(err);
     });
     mongodbConnection.on('open', () => {
-        console.info('Connection open');
+        logger.info('Connection open');
     });
 }
 

@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { config } from '@src/config';
 import { closeMongoDBConnection } from '@src/db/mongodb';
+import { logger } from '@src/utils/logger';
 import { Express } from 'express';
 import { createServer, Server } from 'http';
 
@@ -27,11 +28,9 @@ function gracefulShutdown(
     // eslint-disable-next-line no-unused-vars
     return (code, reason) => (err, promise) => {
         if (err && err instanceof Error) {
-            // log the problem on a proper error message
-            // TODO: Remplase console log for a better way to logs erros
-            console.error(err.message, err.stack);
+            logger.error(err.message, err.stack);
         } else {
-            console.error(`The api will close because: ${reason} with ${code}`);
+            logger.error(`The api will close because: ${reason} with ${code}`);
         }
         // Add a Circuit Breakker
         // Try to finish the system gracefully but if something happen shutdown immediately
@@ -44,8 +43,8 @@ export function createAppServer(app: Express) {
     const httpServer = createServer(app);
 
     httpServer.on('listening', () => {
-        console.log(`Running HTTP server at: http://localhost:${config.port}`);
-        console.log(
+        logger.info(`Running HTTP server at: http://localhost:${config.port}`);
+        logger.info(
             `Running GraphQL server at: http://localhost:${config.port}/graphql`,
         );
     });

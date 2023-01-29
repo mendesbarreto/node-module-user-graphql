@@ -1,5 +1,6 @@
 import { config } from '@src/config';
 import { redisGet, redisInstance, redisSet } from '@src/db/redis';
+import { logger } from '@src/utils/logger';
 import { NextFunction, Request, Response } from 'express';
 import { JwtPayload, verify } from 'jsonwebtoken';
 import { Types } from 'mongoose';
@@ -30,7 +31,7 @@ export async function authenticateUser(
     let user: UserLean;
 
     if (!cachedUser) {
-        console.log('User not cached');
+        logger.info('User not cached');
         const { _id: userId } = verify(token, jwtSecret) as JwtPayload;
 
         user = await userRepository

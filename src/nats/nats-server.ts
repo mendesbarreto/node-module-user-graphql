@@ -1,4 +1,5 @@
 import { config } from '@src/config';
+import { logger } from '@src/utils/logger';
 import { connect, JetStreamClient, JetStreamManager, NatsConnection } from 'nats';
 
 let connection: NatsConnection;
@@ -17,7 +18,7 @@ export async function createNats() {
     } = config.nats;
 
     if (!servers) {
-        console.error('No Nats servers found');
+        logger.error('No Nats servers found');
         return;
     }
 
@@ -32,38 +33,38 @@ export async function createNats() {
             pass,
         });
         // TODO: Add success logs here
-        console.info("Nats connected");
+        logger.info("Nats connected");
     } catch (err) {
-        console.error(err);
+        logger.error(err);
         throw err;
     }
 
     try {
         jetStreamManager = await connection.jetstreamManager();
-        console.info('JetStream Manager connected');
+        logger.info('JetStream Manager connected');
     } catch (err) {
-        console.error(err);
+        logger.error(err);
     }
 
     try {
         // The stream will be anythng that arrives with the appanme
         const stream = await jetStreamManager.streams.add({ name, subjects: [`${name}.*`] });
-        console.info(`The api stream created ${stream.config} `);
+        logger.info(`The api stream created ${stream.config} `);
     } catch (err) {
-        console.error(err);
+        logger.error(err);
     }
 
     try {
         jetStreamClient = connection.jetstream();
-        console.info('JetStream client created');
+        logger.info('JetStream client created');
     } catch (err) {
-        console.error(err);
+        logger.error(err);
     }
 }
 
 export async function disconnectNats() {
     if (!connection) {
-        console.warn('No nats connection created or active to disconnect');
+        logger.warn('No nats connection created or active to disconnect');
     }
     return connection?.close();
 }
